@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
+using Spaceship.Interfaces;
 
 namespace Spaceship.Player
 {
     public class PlayerController : MonoBehaviour
     {
         private PlayerModel player;
-        private PlayerHealth playerHealth;
-        private PlayerMove playerMove;
+        private IDamagable playerHealth;
+        private IMovable playerMove;
         public static event Action<PlayerModel> OnPlayerInitialized;
         private void Awake()
         {
