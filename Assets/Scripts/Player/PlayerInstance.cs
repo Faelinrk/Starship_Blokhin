@@ -5,10 +5,9 @@ using Spaceship.Player;
 
 namespace Spaceship.Controllers
 {
-    public sealed class PlayerController
+    public sealed class PlayerInstance : MonoBehaviour
     {
-        PlayerInitializer _player = new PlayerInitializer();
-
+        public PlayerInitializer _player;
     }
 }
 

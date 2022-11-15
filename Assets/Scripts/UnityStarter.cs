@@ -1,17 +1,32 @@
+using Spaceship.Controllers;
+using Spaceship.Player;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Spaceship
 {
     public class UnityStarter : MonoBehaviour
     {
-        public event Action OnAwake;
+        private PlayerInstance _playerController;
+        [SerializeField] private PlayerInstance _playerViewPrefab;
+        public event Action EventOnAwake;
+        public event Action EventOnStart;
+        public event Action EventOnDisable;
 
         private void Awake()
         {
-            OnAwake?.Invoke();
+            EventOnAwake?.Invoke();
+        }
+        private void Start()
+        {
+            _playerController = Instantiate(_playerViewPrefab);
+            _playerController._player = new PlayerInitializer(this);
+            EventOnStart?.Invoke();
+        }
+        private void OnDisable()
+        {
+            Destroy(_playerController);
+            EventOnDisable?.Invoke();
         }
 
     }

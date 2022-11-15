@@ -1,23 +1,22 @@
-using System;
-using UnityEngine;
+using Spaceship.Controllers;
 using Spaceship.Interfaces;
-using Spaceship.Player;
 using Spaceship.Views;
 
-namespace Spaceship.Controllers
+namespace Spaceship.Player
 {
     public sealed class PlayerInitializer
     {
-        public UnityStarter UnityStarter;
+        private UnityStarter _unityStarter;
         public PlayerView Player;
         public IDamageble PlayerHealth;
         public IMovable PlayerMove;
         public DamagebleController DamagebleController;
         public HealthView HealthView;
 
-        public PlayerInitializer()
+        public PlayerInitializer(UnityStarter unityStarter)
         {
-            UnityStarter.OnAwake += Initialize;
+            _unityStarter = unityStarter;
+            _unityStarter.EventOnAwake += Initialize;
         }
 
         private void Initialize()
@@ -30,6 +29,7 @@ namespace Spaceship.Controllers
 
         ~PlayerInitializer()
         {
+            _unityStarter.EventOnAwake -= Initialize;
             DamagebleController.Dispose();
         }
     }
