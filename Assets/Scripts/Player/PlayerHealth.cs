@@ -4,19 +4,21 @@ using System;
 
 namespace Spaceship.Player
 {
-    public class PlayerHealth : PlayerComponent, IDamagable
+    public sealed class PlayerHealth : IDamageble
     {
-        public static event Action<int> PlayerOnHealthChanged;
+        PlayerView _playerView;
+        public PlayerHealth(PlayerView playerView)
+        {
+            _playerView = playerView;
+        }
+
+        public event Action<int> PlayerOnHealthChanged;
         public bool TryTakeDamage(int damage)
         {
-            if (damage > playerModel.Health)
+            if (_playerView.Health > 0)
             {
-                damage = playerModel.Health;
-            }
-            if (playerModel.Health > 0)
-            {
-                playerModel.Health -= damage;
-                PlayerOnHealthChanged?.Invoke(playerModel.Health);
+                _playerView.Health -= damage;
+                PlayerOnHealthChanged?.Invoke(_playerView.Health);
                 return true;
             }
             return false;

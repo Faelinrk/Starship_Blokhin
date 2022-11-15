@@ -1,26 +1,14 @@
 using System;
 using UnityEngine;
 using Spaceship.Interfaces;
+using Spaceship.Player;
 
-namespace Spaceship.Player
+namespace Spaceship.Controllers
 {
-    public class PlayerController : MonoBehaviour
+    public sealed class PlayerController
     {
-        private PlayerModel player;
-        private IDamagable playerHealth;
-        private IMovable playerMove;
-        public static event Action<PlayerModel> OnPlayerInitialized;
-        private void Awake()
-        {
-            player = new PlayerModel();
-            playerMove = new PlayerMove();
-            playerHealth = new PlayerHealth();
-            OnPlayerInitialized?.Invoke(player);
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            playerHealth.TryTakeDamage(1);
-        }
+        PlayerInitializer _player = new PlayerInitializer();
+
     }
 }
 
