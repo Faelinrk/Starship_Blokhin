@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 412155190}
   - component: {fileID: 412155189}
   m_Layer: 0
-  m_Name: UnityStarter
+  m_Name: ProjectEntrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c660f9d9702ec4994b6896e14e7a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerControllerPrefab: {fileID: 4469781293646268592, guid: 858b4e41972675f43bd74f08b59a6355, type: 3}
 --- !u!4 &412155190
 Transform:
   m_ObjectHideFlags: 0

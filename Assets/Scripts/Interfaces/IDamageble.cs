@@ -4,7 +4,7 @@ namespace Spaceship.Interfaces
 {
     public interface IDamageble
     {
-        public event Action<int> PlayerOnHealthChanged;
+        public event Action<int> OnHealthChanged;
         bool TryTakeDamage(int damage);
     }
 }

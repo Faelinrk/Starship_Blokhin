@@ -5,13 +5,12 @@ using UnityEngine;
 
 namespace Spaceship
 {
-    public class UnityStarter : MonoBehaviour
+    public class ProjectEntrance : MonoBehaviour
     {
-        private PlayerInstance _playerController;
-        [SerializeField] private PlayerInstance _playerViewPrefab;
         public event Action EventOnAwake;
         public event Action EventOnStart;
         public event Action EventOnDisable;
+        public event Action EventOnUpdate;
 
         private void Awake()
         {
@@ -19,14 +18,16 @@ namespace Spaceship
         }
         private void Start()
         {
-            _playerController = Instantiate(_playerViewPrefab);
-            _playerController._player = new PlayerInitializer(this);
             EventOnStart?.Invoke();
         }
         private void OnDisable()
         {
-            Destroy(_playerController);
             EventOnDisable?.Invoke();
+        }
+
+        private void Update()
+        {
+            EventOnUpdate?.Invoke();
         }
 
     }
