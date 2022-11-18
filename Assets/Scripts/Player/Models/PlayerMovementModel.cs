@@ -9,13 +9,12 @@ namespace Spaceship.Player
     public sealed class PlayerMovementModel :  IMovable
     {
         public Rigidbody Rb;
-
         public event Action OnMove;
 
         public bool TryToMove(Vector3 direction, float speed)
         {
             direction *= speed;
-            Rb.AddForce(direction, ForceMode.Impulse);
+            Rb.velocity = direction;
             return true;
         }
 
