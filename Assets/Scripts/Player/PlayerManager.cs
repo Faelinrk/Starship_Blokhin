@@ -15,8 +15,8 @@ namespace Spaceship.Player
 
         public void InstantiatePlayer()
         {
-            PlayerView player = UnityEngine.Object.Instantiate(new GameObject().AddComponent(typeof(PlayerView))) as PlayerView;
-            player.PlayerMovementController = new PlayerMovementController(player, _projectEntrance);
+            GameObject player = UnityEngine.Object.Instantiate(new GameObject());
+            new PlayerMovementController(player, _projectEntrance);
         }
 
         public void Dispose()
