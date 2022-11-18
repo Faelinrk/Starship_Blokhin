@@ -1,8 +1,6 @@
-using Spaceship.Controllers;
 using Spaceship.Player;
 using System;
 using UnityEngine;
-using Spaceship.Factories;
 
 namespace Spaceship
 {
@@ -16,12 +14,12 @@ namespace Spaceship
         #endregion
 
         #region Factories
-        private PlayerFactory _playerFactory;
+        private PlayerManager _playerManager;
         #endregion
 
         private void Awake()
         {
-            _playerFactory = new PlayerFactory(this);
+            _playerManager = new PlayerManager(this);
             EventOnAwake?.Invoke();
         }
         private void Start()
@@ -40,7 +38,7 @@ namespace Spaceship
 
         private void OnDestroy()
         {
-            _playerFactory.Dispose();
+            _playerManager.Dispose();
         }
 
     }

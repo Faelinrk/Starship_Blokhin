@@ -13,9 +13,13 @@ namespace Spaceship.Player
         public const string Horizontal = "Horizontal";
         public const float PlayerSpeed = 5;
 
-        public PlayerMovementController(PlayerMovementModel playerMovementModel, PlayerMovementView playerMovementView, ProjectEntrance projectEntrance)
+        public PlayerMovementController(PlayerView player,  ProjectEntrance projectEntrance)
         {
-            _playerMovementModel = playerMovementModel;
+            player.PlayerMovementView = player.gameObject.AddComponent(typeof(PlayerMovementView)) as PlayerMovementView;
+            player.PlayerMovementModel = new PlayerMovementModel();
+            _playerMovementModel = player.PlayerMovementModel;
+            PlayerMovementView playerMovementView = player.PlayerMovementView;
+            playerMovementView.PlayerRigidbody = player.GetComponent<Rigidbody>();
             _playerMovementModel.Rb = playerMovementView.PlayerRigidbody;
             _playerMovementModel.Rb.useGravity = false; // TODO: Load rigidbody parametrs from config?
             projectEntrance.EventOnUpdate += MovePlayer;
