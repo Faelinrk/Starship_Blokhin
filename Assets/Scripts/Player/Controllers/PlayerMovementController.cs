@@ -1,32 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using Spaceship.Models;
+using System;
 using UnityEngine;
-using Spaceship.Interfaces;
 
-namespace Spaceship.Player
+namespace Spaceship.Controllers
 {
-    public class PlayerMovementController
+    public class PlayerMovementController : IDisposable
     {
-        private PlayerMovementModel _playerMovementModel;
+        private ProjectEntrance _projectEntrance;
+        private MovementModel _playerMovementModel;
+        private Rigidbody _rb;
 
-        public const string Vertical = "Vertical";
-        public const string Horizontal = "Horizontal";
-        public const float PlayerSpeed = 5;
-
-        public PlayerMovementController(GameObject player,  ProjectEntrance projectEntrance)
-        {         
-            _playerMovementModel = new PlayerMovementModel();
-            _playerMovementModel.Rb = player.AddComponent<Rigidbody>();
-            _playerMovementModel.Rb.useGravity = false; // TODO: Load rigidbody parametrs from config?
-            projectEntrance.EventOnUpdate += MovePlayer;
+        public PlayerMovementController(MovementModel playerMovementModel, Rigidbody rb, ProjectEntrance projectEntrance)
+        {
+            _projectEntrance = projectEntrance;
+            _playerMovementModel = playerMovementModel;
+            _rb = rb;
+            projectEntrance.OnMovementInputChanged += ChangeSpeed;
+            _playerMovementModel.OnSpeedChanged += MovePlayer;
         }
 
-        void MovePlayer()
+        public void ChangeSpeed(Vector3 accel)
         {
-            float horizontal = Input.GetAxis(Horizontal);
-            float vertical = Input.GetAxis(Vertical);
-            Vector3 direction = new Vector3(horizontal, vertical, 0);
-            _playerMovementModel.TryToMove(direction, PlayerSpeed);
+            _playerMovementModel.Accelerate(accel);
+        }
+
+
+        void MovePlayer(float horizontalSpeed, float verticalSpeed)
+        {
+            Vector3 direction = new Vector3(horizontalSpeed, verticalSpeed, 0);
+            _rb.velocity = direction;
+            
+        }
+
+        public void Dispose()
+        {
+            _projectEntrance.OnMovementInputChanged -= ChangeSpeed;
+            _playerMovementModel.OnSpeedChanged -= MovePlayer;
         }
     }
 

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Enemies
+  m_EditorClassIdentifier: 
+  m_GroupName: Enemies
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ce8b415d9b32a234293863cd0ad0a9a8
+  m_SerializeEntries:
+  - m_GUID: 9fc198f6377db6442b5ca3f3d860df31
+    m_Address: EnemyShip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2813c3cfabe4af34699bdd292c32311e
+    m_Address: Asteroid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 46e811996c8fe7a4cb5b808860cf82ab, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2ca62463bc9199249b8fbb77c10ea712, type: 2}
+    - {fileID: 11400000, guid: e957674d17ba81a4cb7200277cef3b57, type: 2}
