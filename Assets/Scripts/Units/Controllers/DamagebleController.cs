@@ -11,7 +11,7 @@ namespace Spaceship.Controllers
         private ProjectEntrance _projectEntrance;
         private IDamageble _damagableModel;
         private HealthView _healthView;
-        private int damage = 10;
+        private int damage = 10;//TODO: Push out from model to unit View
 
         public DamagebleController(HealthView healthView, ProjectEntrance projectEntrance)
         {
@@ -24,7 +24,7 @@ namespace Spaceship.Controllers
 
         private void CheckEnemyNearby()
         {
-            if (Physics.CheckSphere(_healthView.transform.position, 1f, _healthView.DangerousLayer))
+            if (Physics.CheckSphere(_healthView.transform.position, 1f, _healthView.DangerousLayer)) //TODO: Change collision logic to check position from event
             {
                 _damagableModel.TakeDamage(damage);
             }

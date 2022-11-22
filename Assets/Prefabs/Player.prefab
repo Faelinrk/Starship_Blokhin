@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 926464820477713994}
   - component: {fileID: 2965396527503444979}
   - component: {fileID: 3336970992894452218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8858610652174556023}
   - component: {fileID: 7705952172323252077}
   - component: {fileID: 4984271259982732092}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 1093570926600446548}
   - component: {fileID: 6580344202713331725}
   - component: {fileID: 5218515006068366500}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

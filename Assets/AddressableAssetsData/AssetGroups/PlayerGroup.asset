@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2da8c366a84841e4b9ab787e922dba04
+    m_Address: EnemyShip
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f493da1ae2d7df041a52e11740fa1dd7
+    m_Address: Asteroid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46e811996c8fe7a4cb5b808860cf82ab, type: 2}
   m_SchemaSet:

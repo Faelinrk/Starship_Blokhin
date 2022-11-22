@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spaceship.Models
 {
-    public sealed class MovementModel : IMovable
+    public sealed class MovementModel
     {
-        public event Action<float, float> OnSpeedChanged;
-        private float _horizontalSpeed = 0f;
+        public event Action<Vector3> OnSpeedChanged;
+        private float _horizontalSpeed = 0f;//TODO: Push out from model to unit View
         private float _verticalSpeed = 0f;
         private float _maxSpeed = 10f;
         private float _accelerationCoeff = .1f;
@@ -18,7 +18,7 @@ namespace Spaceship.Models
             _verticalSpeed += accel.y * _accelerationCoeff;
             _horizontalSpeed = Mathf.Clamp(_horizontalSpeed, -_maxSpeed, _maxSpeed);
             _verticalSpeed = Mathf.Clamp(_verticalSpeed, -_maxSpeed, _maxSpeed);
-            OnSpeedChanged?.Invoke(_horizontalSpeed, _verticalSpeed);
+            OnSpeedChanged?.Invoke(new Vector3(_horizontalSpeed, _verticalSpeed,0));
         }
     }
 }

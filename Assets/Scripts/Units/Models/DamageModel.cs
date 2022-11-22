@@ -6,7 +6,7 @@ namespace Spaceship.Player
 {
     public sealed class DamageModel : IDamageble
     {
-        private int _hp = 100;
+        private int _hp = 100;//TODO: Push out from model to View
 
         public event Action<int> OnHealthChanged;
         public void TakeDamage(int damage)

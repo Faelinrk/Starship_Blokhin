@@ -4,7 +4,6 @@ namespace Spaceship.Interfaces
 {
     public interface IMovable
     {
-        public event Action<float, float> OnSpeedChanged;
-        void Accelerate(Vector3 accel);
+        public event Action<Vector3> OnMovementInputChanged;
     }
 }
