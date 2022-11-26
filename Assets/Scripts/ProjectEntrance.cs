@@ -1,18 +1,17 @@
-using Spaceship.Interfaces;
+using Cysharp.Threading.Tasks;
 using Spaceship.Player;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Spaceship
 {
-    public class ProjectEntrance : MonoBehaviour
+    public sealed class ProjectEntrance : MonoBehaviour
     {
         #region Assets
-        [SerializeField] private AssetReference playerPrefab;
-        [SerializeField] private AssetReference asteroidPrefab;
-        [SerializeField] private AssetReference spaceshipPrefab;
+        [SerializeField] private AssetReference _playerPrefab;
+        [SerializeField] private AssetReference _asteroidPrefab;
+        [SerializeField] private AssetReference _spaceshipPrefab;
         #endregion
 
         #region Events
@@ -27,21 +26,14 @@ namespace Spaceship
         public AddressablesPool AsteroidPool;
         #endregion
 
+        #region Objects
+
+        #endregion
 
         private void Awake()
         {
-            InstantiatePools();
+            TestPoolsAndPatterns();
             EventOnAwake?.Invoke();
-        }
-
-        private void InstantiatePools()
-        {
-            AsteroidPool = new AddressablesPool(transform, 8, asteroidPrefab);
-            AsteroidPool.LoadingCoroutine = StartCoroutine(AsteroidPool.SetupPool());
-            StartCoroutine(TakeObject(AsteroidPool));
-            
-            PlayerFactory = new UnitFactory(this);
-            StartCoroutine(PlayerFactory.InstantiateUnit(playerPrefab, new InputMovementModel(this)));
         }
 
         private void Start()
@@ -57,10 +49,20 @@ namespace Spaceship
         {
             EventOnUpdate?.Invoke();
         }
-        IEnumerator TakeObject (AddressablesPool pool)
+
+        private async UniTask TestPoolsAndPatterns()
         {
-            yield return new WaitForSeconds(1f);
-            pool.Take(null);
+            AsteroidPool = new AddressablesPool();
+            await AsteroidPool.BuildAddressablesPoolAsync(8, _asteroidPrefab);
+            GameObject asteroid = AsteroidPool.Take();
+            PlayerFactory = new UnitFactory();
+            GameObject _playerInstance = await PlayerFactory.InstantiateUnit(_playerPrefab);
+            var asteroidPrototype = new Prototype(asteroid);
+            asteroidPrototype.Clone();
+            GameObject bullet = GameObject.CreatePrimitive(PrimitiveType.Capsule)
+                .AddRigidbody(true)
+                .AddCollider();
+            bullet.name = "Bullet";
         }
     }
 }

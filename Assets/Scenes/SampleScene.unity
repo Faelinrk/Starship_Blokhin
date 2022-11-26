@@ -152,17 +152,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c660f9d9702ec4994b6896e14e7a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab:
+  _playerPrefab:
     m_AssetGUID: 858b4e41972675f43bd74f08b59a6355
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  asteroidPrefab:
+  _asteroidPrefab:
     m_AssetGUID: f493da1ae2d7df041a52e11740fa1dd7
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  spaceshipPrefab:
+  _spaceshipPrefab:
     m_AssetGUID: 2da8c366a84841e4b9ab787e922dba04
     m_SubObjectName: 
     m_SubObjectType: 
