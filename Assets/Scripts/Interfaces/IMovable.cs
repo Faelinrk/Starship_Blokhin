@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 namespace Spaceship.Interfaces
 {
     public interface IMovable
     {
-        bool TryToMove(float speed);
+        public event Action<Vector3> OnMovementInputChanged;
     }
 }
