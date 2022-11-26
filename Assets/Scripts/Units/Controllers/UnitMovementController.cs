@@ -9,14 +9,14 @@ namespace Spaceship.Controllers
     {
         private IMovable _movableInterface;
         private MovementModel _unitMovementModel;
-        private Rigidbody _rb;
+        private Rigidbody _rigidbody;
         public event Action<Vector3> OnUnitUpdatePosition;
 
-        public UnitMovementController(MovementModel unitMovementModel, Rigidbody rb, IMovable movableInterface)
+        public UnitMovementController(MovementModel unitMovementModel, Rigidbody rigidbody, IMovable movableInterface)
         {
             _movableInterface = movableInterface;
             _unitMovementModel = unitMovementModel;
-            _rb = rb;
+            _rigidbody = rigidbody;
             _movableInterface.OnMovementInputChanged += _unitMovementModel.Accelerate;
             _unitMovementModel.OnSpeedChanged += MoveUnit;
         }
@@ -24,13 +24,13 @@ namespace Spaceship.Controllers
 
         void MoveUnit(Vector3 direction)
         {
-            _rb.velocity = direction;
+            _rigidbody.velocity = direction;
             
         }
 
         private void ActualizeUnitPosition()
         {
-            OnUnitUpdatePosition?.Invoke(_rb.transform.position);
+            OnUnitUpdatePosition?.Invoke(_rigidbody.transform.position);
         }
         public void Dispose()
         {
